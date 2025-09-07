@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+        # Create rustdesk user if it doesn't exist
+        if ! getent passwd rustdesk > /dev/null; then
+            adduser --system --group --home /var/lib/rustdesk-server --no-create-home rustdesk
+        fi
+
+        # Create directories
+        mkdir -p /var/lib/rustdesk-server
+        mkdir -p /var/log/rustdesk-server
+        
+        # Set ownership
+        chown rustdesk:rustdesk /var/lib/rustdesk-server
+        chown rustdesk:rustdesk /var/log/rustdesk-server
+
+        # Reload systemd
+        systemctl daemon-reload || true
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

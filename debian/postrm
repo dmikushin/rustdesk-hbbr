@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    purge)
+        # Remove user and group
+        if getent passwd rustdesk > /dev/null; then
+            deluser --system rustdesk || true
+        fi
+        
+        # Remove directories
+        rm -rf /var/lib/rustdesk-server
+        rm -rf /var/log/rustdesk-server
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

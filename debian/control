@@ -1,0 +1,15 @@
+Source: rustdesk-hbbr
+Section: net
+Priority: optional
+Maintainer: RustDesk Developers <info@rustdesk.com>
+Build-Depends: debhelper (>= 9), cargo, rustc, musl-tools
+Standards-Version: 3.9.8
+Homepage: https://github.com/rustdesk/rustdesk-server
+
+Package: rustdesk-hbbr
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: RustDesk Relay Server (HBBR)
+ RustDesk Relay Server (HBBR) is responsible for relaying encrypted data
+ between RustDesk clients and handling NAT traversal when direct peer-to-peer
+ connection is not possible. It runs on port 21117 by default.
